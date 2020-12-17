@@ -1,9 +1,15 @@
 package com.app.serviceimpl;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.app.iservice.IUserService;
 import com.app.mailingservice.SendMail;
@@ -42,7 +48,21 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public String sendMail() {
 		sendMail.sendMailWithAttachment();
-		return "";
+		return "mail sended";
+	}
+
+	@Override
+	public String uploadFile(MultipartFile file) {
+		try {
+			Path path = Paths.get("/home/karunakar/tony/"+LocalDate.now()+"_"+(new String(file.getOriginalFilename().toString().getBytes(), "UTF-8")));
+			byte[] bytes=file.getBytes();
+			Files.write(path, bytes);
+			return "fileUploaded";
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return e.getMessage().toString();
+		}
 	}
 
 	/*@Autowired

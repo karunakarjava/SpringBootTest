@@ -2,7 +2,9 @@ package com.app.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.app.iservice.IUserService;
 
@@ -55,8 +57,17 @@ public class UserController {
 	
 	@RequestMapping("/sendemail")
 	public String sendMail() {
-		service.sendMail();
-		return "email";
+		return service.sendMail();
+	}
+	
+	@RequestMapping("/uploadingfile")
+	public String uploadFile( @RequestParam(value = "file") MultipartFile file) {
+		if(file!=null && !file.isEmpty()) {
+			return service.uploadFile(file);
+		}else {
+			return "Somthing Wrong";
+		}
+		
 	}
 
 }

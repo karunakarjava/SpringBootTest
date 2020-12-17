@@ -1,20 +1,51 @@
 package com.app.serviceimpl;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.app.iservice.IUserService;
+import com.app.mailingservice.SendMail;
 import com.app.model.User;
-import com.app.repo.UserRepo;
 
 @Service
 public class UserServiceImpl implements IUserService {
-
+	
 	@Autowired
+	private SendMail sendMail;
+
+	@Override
+	public String saveUser(User u) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public User findByUserEmail(String email) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<User> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public User findById(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String sendMail() {
+		sendMail.sendMailWithAttachment();
+		return "";
+	}
+
+	/*@Autowired
 	private BCryptPasswordEncoder bcryptPasswordEncoder;
 	
 	@Autowired
@@ -44,6 +75,6 @@ public class UserServiceImpl implements IUserService {
 	public User findById(String id) {
 		Optional<User> user= repo.findById(id);
 		return user.get();
-	}
+	}*/
 
-}
+}	

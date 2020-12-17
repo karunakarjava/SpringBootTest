@@ -1,22 +1,6 @@
 package com.app.serviceimpl;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Service;
-
-import com.app.model.User;
-import com.app.repo.UserRepo;
-
-
-@Service
+/*@Service
 public class CustomUserDetailsService implements UserDetailsService{
 
 
@@ -40,5 +24,5 @@ public class CustomUserDetailsService implements UserDetailsService{
 	
 
 
-}
+}*/
 

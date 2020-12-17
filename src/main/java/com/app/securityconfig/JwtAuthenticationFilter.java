@@ -1,29 +1,6 @@
 package com.app.securityconfig;
 
-import static com.app.securityconfig.JwtConstants.TOKEN_PREFIX;
-
-import java.io.IOException;
-import java.util.Enumeration;
-
-import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
-import org.springframework.stereotype.Component;
-import org.springframework.web.filter.OncePerRequestFilter;
-
-import com.app.serviceimpl.CustomUserDetailsService;
-
-import io.jsonwebtoken.ExpiredJwtException;
-import io.jsonwebtoken.SignatureException;
-
-@Component
+/*@Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter{
 
 	@Autowired
@@ -69,4 +46,4 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter{
 
 	}
 
-}
+}*/

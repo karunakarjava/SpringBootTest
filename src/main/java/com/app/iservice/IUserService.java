@@ -9,4 +9,5 @@ public interface IUserService {
 	public User findByUserEmail(String email);
 	public List<User> findAll();
 	public User findById(String id);
+	public String sendMail();
 }

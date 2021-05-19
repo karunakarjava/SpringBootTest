@@ -5,12 +5,19 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+
+
 @Entity
 @Table(name="Roles_table")
 public class Role {
+	public static enum ROLES{
+		USER,ANDMIN,SUPERADMIN
+	}
 	@Id
 	@GeneratedValue
 	private Integer roleId;
+	
+	
 	private String roleName;
 	
 	public Role() {

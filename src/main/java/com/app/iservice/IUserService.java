@@ -1,16 +1,19 @@
 package com.app.iservice;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.web.multipart.MultipartFile;
 
 import com.app.model.User;
 
 public interface IUserService {
-	public String saveUser(User u);
+	public User saveUser(User u);
 	public User findByUserEmail(String email);
+	public void deleteUserById(Integer userId);
 	public List<User> findAll();
-	public User findById(String id);
+	public Optional<User> findById(Integer userId);
 	public String sendMail();
 	public String uploadFile(MultipartFile file);
+	public User updateUser(User user);
 }

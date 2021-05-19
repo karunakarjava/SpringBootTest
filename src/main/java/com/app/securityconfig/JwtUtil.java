@@ -1,6 +1,29 @@
 package com.app.securityconfig;
 
-/*@Component
+import static com.app.securityconfig.JwtConstants.ACCESS_TOKEN_VALIDITY_SECONDS;
+import static com.app.securityconfig.JwtConstants.AUTHORITIES_KEY;
+import static com.app.securityconfig.JwtConstants.SIGNING_KEY;
+
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Date;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Component;
+
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jws;
+import io.jsonwebtoken.JwtParser;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+
+@Component
 public class JwtUtil {
 
 	public  String generateToken(Authentication authentication) {
@@ -66,4 +89,4 @@ public class JwtUtil {
 
 
 
-}*/
+}

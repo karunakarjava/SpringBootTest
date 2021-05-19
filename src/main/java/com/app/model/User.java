@@ -10,7 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 
@@ -29,8 +29,11 @@ public class User {
 	private String userLanguage;
 	private LocalDate userDob;
 	
-	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-	@JoinTable(name="User_Roles_Table",joinColumns = @JoinColumn(name="userId"),inverseJoinColumns = @JoinColumn(name="roleId"))
+	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	@JoinTable(name="User_Roles_Table",
+	           joinColumns = { @JoinColumn(name="userId")},
+	           inverseJoinColumns = {@JoinColumn(name="roleId")}
+	          )
 	private Set<Role> roles;
 
 	
@@ -77,6 +80,7 @@ public class User {
 		this.userEmail = userEmail;
 	}
 
+	//@JsonIgnore
 	public String getUserPwd() {
 		return userPwd;
 	}

@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.app.iservice.IUserService;
 import com.app.model.User;
 import com.app.repo.UserRepo;
 
@@ -20,11 +21,11 @@ public class CustomUserDetailsService implements UserDetailsService{
 
 
 	@Autowired
-	private UserRepo userRepository;
+	private IUserService userService;
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		User user=userRepository.findByUserEmail(username);
+		User user=userService.findByUserEmail(username);
 		if(user==null) {
 			throw new UsernameNotFoundException("Invalid username or Password");
 		}

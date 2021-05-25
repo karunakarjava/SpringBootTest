@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 
@@ -18,6 +19,11 @@ import javax.persistence.Table;
 @Entity
 @Table(name="User_Table")
 public class User {
+	
+	public enum STATUS{
+		ACTIVE,INACTIVE,INVITED
+	}
+	
 	@Id
 	@GeneratedValue
 	private Integer userId;
@@ -28,6 +34,11 @@ public class User {
 	private String userGender;
 	private String userLanguage;
 	private LocalDate userDob;
+	private String status;
+	
+	@ManyToOne
+	@JoinColumn(name="company_id")
+	private Company company;
 	
 	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinTable(name="User_Roles_Table",
@@ -35,26 +46,6 @@ public class User {
 	           inverseJoinColumns = {@JoinColumn(name="roleId")}
 	          )
 	private Set<Role> roles;
-
-	
-
-	public User(Integer userId, String userName, String userEmail, String userPwd, String userPhono, String userGender,
-			String userLanguage, LocalDate userDob, Set<Role> roles) {
-		super();
-		this.userId = userId;
-		this.userName = userName;
-		this.userEmail = userEmail;
-		this.userPwd = userPwd;
-		this.userPhono = userPhono;
-		this.userGender = userGender;
-		this.userLanguage = userLanguage;
-		this.userDob = userDob;
-		this.roles = roles;
-	}
-
-	public User() {
-		super();
-	}
 
 	public Integer getUserId() {
 		return userId;
@@ -80,7 +71,6 @@ public class User {
 		this.userEmail = userEmail;
 	}
 
-	//@JsonIgnore
 	public String getUserPwd() {
 		return userPwd;
 	}
@@ -121,6 +111,22 @@ public class User {
 		this.userDob = userDob;
 	}
 
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public Company getCompany() {
+		return company;
+	}
+
+	public void setCompany(Company company) {
+		this.company = company;
+	}
+
 	public Set<Role> getRoles() {
 		return roles;
 	}
@@ -128,7 +134,8 @@ public class User {
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
 	}
-	
+    
 	
 
+	
 }

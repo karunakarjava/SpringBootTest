@@ -11,7 +11,7 @@ import javax.persistence.Table;
 @Table(name="Roles_table")
 public class Role {
 	public static enum ROLES{
-		USER,ANDMIN,SUPERADMIN
+		USER,ADMIN,SUPERADMIN
 	}
 	@Id
 	@GeneratedValue
@@ -40,6 +40,12 @@ public class Role {
 	public void setRoleName(String roleName) {
 		this.roleName = roleName;
 	}
+	@Override
+	public String toString() {
+		return "{ roleId : " + roleId + ", roleName : " + roleName + " }";
+	}
+	
+	
 
 }
 

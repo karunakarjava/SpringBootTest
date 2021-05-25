@@ -50,7 +50,7 @@ public class SpringBootSecurity  extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception {
 		http.cors().and().csrf().disable().
 		authorizeRequests()
-		.antMatchers("/api/login","/api/signup","/actuator/*","/swagger*/**","/webjars/**","/v2/api-docs").permitAll()
+		.antMatchers("/api/login","/api/signup","/actuator/**","/swagger*/**","/webjars/**","/v2/api-docs").permitAll()
 		.anyRequest().authenticated()
 		.and()
 		.exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()

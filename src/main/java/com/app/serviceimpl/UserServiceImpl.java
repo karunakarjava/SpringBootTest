@@ -11,6 +11,9 @@ import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -57,6 +60,11 @@ public class UserServiceImpl implements IUserService {
 	}
 	
 	@Override
+	@Caching(evict = {
+              @CacheEvict(value="findByUserEmail", allEntries=true),
+              @CacheEvict(value="findById", allEntries=true),
+              @CacheEvict(value="findAll", allEntries=true)
+              })
 	public User saveUser(User u) {
 		Set<Role> rolesFromUI=u.getRoles();
 		Set<Role> roles=new HashSet<>();
@@ -76,16 +84,21 @@ public class UserServiceImpl implements IUserService {
 	}
 
 	@Override
+	@Cacheable(cacheNames = "findByUserEmail", key="#email")
 	public User findByUserEmail(String email) {
+		User user=repo.findByUserEmail(email);
+		System.out.println(user);
 		return repo.findByUserEmail(email);
 	}
 
 	@Override
-	public List<User> findAll() {
+	@Cacheable(cacheNames = "findAll")
+	public List<User> findAllUsers() {
 		return repo.findAll();
 	}
 
 	@Override
+	@Cacheable(cacheNames = "findById", key="#id")
 	public Optional<User> findById(Integer id) {
 		Optional<User> user= repo.findById(id);
 		return user;
@@ -99,6 +112,11 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public User updateUser(User updatedUser) {
 		return repo.save(updatedUser);
+	}
+
+	@Override
+	public List<User> searchUser(String searchKey) {
+		return repo.getUsersByDynamicSearch(searchKey);
 	}
 
 }	

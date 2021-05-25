@@ -8,6 +8,7 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cache.annotation.EnableCaching;
 
 import com.app.iservice.IUserService;
 import com.app.model.Role;
@@ -16,6 +17,7 @@ import com.app.model.User;
 
 
 @SpringBootApplication
+@EnableCaching
 public class SpringBootTestApplication {
 	/*@Autowired
 	private IUserService service;
